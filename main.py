@@ -11,6 +11,12 @@ templates = Jinja2Templates(directory="templates")
 modelo = joblib.load("random_forest_model.pkl")
 label_encoder = joblib.load("label_encoder.pkl")
 
+# Ruta GET para mostrar el formulario
+@app.get("/", response_class=HTMLResponse)
+def mostrar_formulario(request: Request):
+    return templates.TemplateResponse("form.html", {"request": request, "prediccion": None})
+
+# Ruta POST para procesar el formulario
 @app.post("/", response_class=HTMLResponse)
 def predecir_desde_formulario(
     request: Request,
