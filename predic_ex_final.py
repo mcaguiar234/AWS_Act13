@@ -8,4 +8,5 @@ label_encoder = joblib.load("label_encoder.pkl")
 
 # Hacer la predicción
 prediccion = modelo. predict(elementos)
-print("Prediccion:", prediccion[0])
+nombre_clase = label_encoder.inverse_transform(prediccion)
+print("Prediccion:", nombre_clase[0])
