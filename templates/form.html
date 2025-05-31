@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Predicción de Clase de Calzado</title>
+    <title>Predicción con FastAPI</title>
 </head>
 <body>
     <h2>Formulario de Predicción</h2>
     <form method="post">
-        <label>Cantidad de imágenes: <input type="number" name="cantidad_imagenes" required></label><br>
         <label>Ancho promedio: <input type="number" name="ancho_promedio" required></label><br>
         <label>Alto promedio: <input type="number" name="alto_promedio" required></label><br>
         <label>Ancho mínimo: <input type="number" name="ancho_minimo" required></label><br>
         <label>Alto mínimo: <input type="number" name="alto_minimo" required></label><br>
         <label>Ancho máximo: <input type="number" name="ancho_maximo" required></label><br>
-        <label>Alto máximo: <input type="number" name="alto_maximo" required></label><br>
-        <label>Archivos corruptos: <input type="number" name="archivos_corruptos" required></label><br><br>
+        <label>Alto máximo: <input type="number" name="alto_maximo" required></label><br><br>
         <input type="submit" value="Predecir">
     </form>
 
     {% if prediccion %}
-    <h3>Clase Predicha: {{ prediccion }}</h3>
+    <h3>Clase predicha: {{ prediccion }}</h3>
     {% endif %}
 </body>
 </html>
