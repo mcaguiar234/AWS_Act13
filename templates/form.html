@@ -76,6 +76,12 @@
         .prediccion h3 {
             color: #2e8b57;
         }
+
+        .nota {
+            color: #999;
+            font-style: italic;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -133,8 +139,10 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/New_Balance_550.jpg" alt="New Balance 550">
             {% elif prediccion == 'vans_sk8-hi' %}
                 <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Vans_Sk8_Hi_black.jpg" alt="Vans SK8-Hi">
+            {% elif prediccion == 'converse_chuck_taylor_all-star_high' %}
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Converse_Chuck_Taylor_All_Star.jpg" alt="Converse Chuck Taylor">
             {% else %}
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Shoe_icon.png" alt="Zapato genérico">
+                <p class="nota">La marca predicha no tiene imagen disponible.</p>
             {% endif %}
         </div>
         {% endif %}
