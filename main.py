@@ -11,10 +11,6 @@ templates = Jinja2Templates(directory="templates")
 modelo = joblib.load("random_forest_model.pkl")
 label_encoder = joblib.load("label_encoder.pkl")
 
-@app.get("/", response_class=HTMLResponse)
-def formulario(request: Request):
-    return templates.TemplateResponse("form.html", {"request": request, "prediccion": None})
-
 @app.post("/", response_class=HTMLResponse)
 def predecir_desde_formulario(
     request: Request,
@@ -35,5 +31,12 @@ def predecir_desde_formulario(
     }])
 
     pred = modelo.predict(df)
-    clase = label_encoder.inverse_transform(pred)[0]
-    return templates.TemplateResponse("form.html", {"request": request, "prediccion": clase})
+    clase_raw = label_encoder.inverse_transform(pred)[0]
+
+    # Limpiar o unificar formato para HTML
+    clase = clase_raw.strip().lower().replace(" ", "_")
+
+    return templates.TemplateResponse("form.html", {
+        "request": request,
+        "prediccion": clase
+    })
