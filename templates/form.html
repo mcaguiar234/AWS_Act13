@@ -1,22 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Predicción con FastAPI</title>
+    <meta charset="UTF-8">
+    <title>Predicción de Marca de Calzado</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f2f2f2;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .campo {
+            margin-bottom: 18px;
+        }
+
+        .campo small {
+            display: block;
+            color: #666;
+            margin-top: 4px;
+            font-size: 12px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .prediccion {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .prediccion img {
+            max-width: 200px;
+            margin-top: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .prediccion h3 {
+            color: #2e8b57;
+        }
+    </style>
 </head>
 <body>
-    <h2>Formulario de Predicción</h2>
-    <form method="post">
-        <label>Ancho promedio: <input type="number" name="ancho_promedio" required></label><br>
-        <label>Alto promedio: <input type="number" name="alto_promedio" required></label><br>
-        <label>Ancho mínimo: <input type="number" name="ancho_minimo" required></label><br>
-        <label>Alto mínimo: <input type="number" name="alto_minimo" required></label><br>
-        <label>Ancho máximo: <input type="number" name="ancho_maximo" required></label><br>
-        <label>Alto máximo: <input type="number" name="alto_maximo" required></label><br><br>
-        <input type="submit" value="Predecir">
-    </form>
+    <div class="container">
+        <h2>Predicción de Marca de Calzado</h2>
+        <form method="post">
+            <div class="campo">
+                <label for="ancho_promedio">Ancho promedio (px):</label>
+                <input type="number" name="ancho_promedio" required>
+                <small>Promedio del ancho de todas las imágenes del zapato.</small>
+            </div>
 
-    {% if prediccion %}
-    <h3>Clase predicha: {{ prediccion }}</h3>
-    {% endif %}
+            <div class="campo">
+                <label for="alto_promedio">Alto promedio (px):</label>
+                <input type="number" name="alto_promedio" required>
+                <small>Promedio del alto de todas las imágenes del zapato.</small>
+            </div>
+
+            <div class="campo">
+                <label for="ancho_minimo">Ancho mínimo (px):</label>
+                <input type="number" name="ancho_minimo" required>
+                <small>Ancho más pequeño entre todas las imágenes del zapato.</small>
+            </div>
+
+            <div class="campo">
+                <label for="alto_minimo">Alto mínimo (px):</label>
+                <input type="number" name="alto_minimo" required>
+                <small>Alto más pequeño entre todas las imágenes del zapato.</small>
+            </div>
+
+            <div class="campo">
+                <label for="ancho_maximo">Ancho máximo (px):</label>
+                <input type="number" name="ancho_maximo" required>
+                <small>Ancho más grande entre todas las imágenes del zapato.</small>
+            </div>
+
+            <div class="campo">
+                <label for="alto_maximo">Alto máximo (px):</label>
+                <input type="number" name="alto_maximo" required>
+                <small>Alto más grande entre todas las imágenes del zapato.</small>
+            </div>
+
+            <input type="submit" value="Predecir marca">
+        </form>
+
+        {% if prediccion %}
+        <div class="prediccion">
+            <h3>Marca predicha: {{ prediccion }}</h3>
+
+            {% if prediccion == 'adidas_ultraboost' %}
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Adidas_Ultraboost_20.jpg" alt="Adidas Ultraboost">
+            {% elif prediccion == 'nike_air_max' %}
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Nike_Air_Max_90_Essential.jpg" alt="Nike Air Max">
+            {% elif prediccion == 'new_balance_550' %}
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/New_Balance_550.jpg" alt="New Balance 550">
+            {% elif prediccion == 'vans_sk8-hi' %}
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Vans_Sk8_Hi_black.jpg" alt="Vans SK8-Hi">
+            {% else %}
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Shoe_icon.png" alt="Zapato genérico">
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
 </body>
 </html>
